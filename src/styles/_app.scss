@@ -16,3 +16,158 @@ body {
   min-block-size: 100vh;
   padding-block-start: $spacing-09;
 }
+
+// ---------------------------------------------------------------------------
+// Watchlist — Content (43:4300) / Toolbar (43:4301)
+// ---------------------------------------------------------------------------
+
+.rb-watchlist-screen {
+  display: flex;
+  flex-direction: column;
+  padding-block-start: $spacing-07;
+  padding-inline: $spacing-07;
+  gap: $spacing-05;
+}
+
+.rb-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rb-freshness {
+  @include type.type-style('body-01');
+
+  color: $text-secondary;
+}
+
+// ---------------------------------------------------------------------------
+// Watchlist table (43:4304)
+// ---------------------------------------------------------------------------
+
+.rb-watchlist {
+  // Col 1–5 are `flex: 1 0 0` in the Figma component, i.e. five equal columns.
+  .cds--data-table {
+    table-layout: fixed;
+  }
+
+  tbody tr {
+    position: relative;
+  }
+
+  tbody tr:hover {
+    background-color: $layer-hover-01;
+  }
+
+  // The Valma table leaves rows transparent so they inherit the surface beneath; Carbon's CSS
+  // paints tbody on $layer (#f4f4f4). The frames read white, so match them.
+  tbody {
+    background-color: transparent;
+  }
+
+  // The Valma table's `cell-specs/bottom-padding` is 30px, but Carbon also paints a 1px row
+  // divider that counts toward the border box — so 29px here puts the *row* on the frame's
+  // pitch exactly: 16 + 18 + 29 + 1 = 64 for a single line, and 16 + 52 + 29 + 1 = 98 once a
+  // two-line headline and its 16px meta line stack. Carbon's stock xl padding (16/16) would
+  // stop at 84px.
+  tbody td {
+    padding-block: $spacing-05 29px;
+  }
+}
+
+.rb-row-link {
+  color: inherit;
+  text-decoration: none;
+
+  // The prototype makes the whole row the target. Stretch the ticker link across the row so
+  // the click area matches, without putting a role on the <tr>.
+  &::after {
+    position: absolute;
+    background-color: transparent;
+    content: '';
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+}
+
+.rb-news-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.rb-news-cell__meta {
+  @include type.type-style('label-01');
+
+  color: $text-helper;
+}
+
+.rb-news-cell__empty {
+  color: $text-helper;
+}
+
+// Sits above the stretched row link so the menu stays clickable. Offsets read off the
+// Overflow instance (43:4312): 4px from the row top, 8px from the table's right edge.
+.rb-row-actions {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: $spacing-02;
+  inset-inline-end: $spacing-03;
+  opacity: 0;
+
+  tr:hover &,
+  tr:focus-within & {
+    opacity: 1;
+  }
+
+  &:has(.cds--overflow-menu--open) {
+    opacity: 1;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Onboarding empty state (43:4315)
+// ---------------------------------------------------------------------------
+
+.rb-onboarding {
+  display: flex;
+  min-block-size: calc(100vh - #{$spacing-09});
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: $spacing-07;
+  gap: $spacing-05;
+  text-align: center;
+}
+
+.rb-onboarding__heading {
+  @include type.type-style('heading-04');
+
+  max-inline-size: 560px;
+  color: $text-primary;
+}
+
+.rb-onboarding__supporting {
+  @include type.type-style('body-02');
+
+  max-inline-size: 560px;
+  color: $text-secondary;
+}
+
+// ---------------------------------------------------------------------------
+// Price direction
+//
+// The Valma library publishes no price-direction token pair, so the frames bind
+// support-success / support-error. This mirrors them exactly — see the README.
+// ---------------------------------------------------------------------------
+
+.rb-price-change--up {
+  color: $support-success;
+}
+
+.rb-price-change--down {
+  color: $support-error;
+}
