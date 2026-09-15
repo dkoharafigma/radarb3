@@ -158,6 +158,82 @@ body {
 }
 
 // ---------------------------------------------------------------------------
+// Add / search modal (43:4334)
+// ---------------------------------------------------------------------------
+
+// Carbon modal widths are percentages, not px: at the xlg breakpoint `md` is 48% (≈691px at
+// 1440). The Figma instance is a hand-resized 671px, so cap the container to land on it.
+.rb-modal .cds--modal-container {
+  max-inline-size: 671px;
+}
+
+.rb-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+// `Web / Add / Search / Results` tightens the gap between the field and the result list.
+.rb-modal-body--results {
+  gap: $spacing-03;
+}
+
+.rb-search-guidance {
+  @include type.type-style('body-01');
+
+  color: $text-secondary;
+}
+
+.rb-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-03;
+}
+
+.rb-results {
+  display: flex;
+  flex-direction: column;
+}
+
+.rb-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: $spacing-03;
+  gap: $spacing-05;
+}
+
+.rb-result__identity {
+  display: flex;
+  flex-direction: column;
+}
+
+.rb-result__ticker {
+  @include type.type-style('heading-compact-01');
+
+  color: $text-primary;
+}
+
+.rb-result__company {
+  @include type.type-style('label-01');
+
+  color: $text-secondary;
+}
+
+.rb-result__price {
+  @include type.type-style('body-01');
+
+  color: $text-primary;
+}
+
+.rb-results__none {
+  @include type.type-style('body-01');
+
+  padding-block: $spacing-03;
+  color: $text-secondary;
+}
+
+// ---------------------------------------------------------------------------
 // Price direction
 //
 // The Valma library publishes no price-direction token pair, so the frames bind
