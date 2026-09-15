@@ -234,6 +234,147 @@ body {
 }
 
 // ---------------------------------------------------------------------------
+// Stock detail (43:4382)
+// ---------------------------------------------------------------------------
+
+.rb-detail {
+  display: flex;
+  flex-direction: column;
+  padding-block-start: $spacing-05;
+  padding-inline: $spacing-07;
+  gap: $spacing-05;
+}
+
+.rb-back {
+  display: inline-flex;
+  border: 0;
+  background: none;
+  block-size: 20px;
+  color: $icon-primary;
+  cursor: pointer;
+  inline-size: 20px;
+  padding-block: 0;
+  padding-inline: 0;
+
+  &:focus-visible {
+    outline: 2px solid $focus;
+    outline-offset: 2px;
+  }
+}
+
+.rb-price-band {
+  display: flex;
+  align-items: center;
+  padding: $spacing-06;
+  background-color: $layer-01;
+  gap: $spacing-07;
+}
+
+.rb-price-band__identity {
+  display: flex;
+  flex-direction: column;
+}
+
+.rb-price-band__ticker {
+  @include type.type-style('heading-04');
+
+  color: $text-primary;
+  font-weight: type.font-weight('semibold');
+}
+
+.rb-price-band__company {
+  @include type.type-style('body-01');
+
+  color: $text-secondary;
+}
+
+.rb-price-band__spacer {
+  // `Spacer` (43:4403) — a literal 10px frame the designer placed between the metric run and
+  // the Remover button, not a token.
+  flex: 0 0 auto;
+  inline-size: 10px;
+}
+
+.rb-metric {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.rb-metric__label {
+  @include type.type-style('label-01');
+
+  color: $text-helper;
+}
+
+.rb-metric__value {
+  @include type.type-style('body-01');
+
+  color: $text-primary;
+}
+
+.rb-metric__value--lead {
+  @include type.type-style('heading-03');
+
+  font-weight: type.font-weight('semibold');
+}
+
+.rb-metric__value--muted {
+  color: $text-secondary;
+}
+
+// ---------------------------------------------------------------------------
+// News (43:4405) / no-news empty state (43:4447)
+// ---------------------------------------------------------------------------
+
+// 880px is a layout width read off the News list frame, not a design token.
+.rb-news-list,
+.rb-no-news {
+  display: flex;
+  max-inline-size: 880px;
+  flex-direction: column;
+  padding-block-start: $spacing-06;
+}
+
+.rb-news-list {
+  gap: $spacing-06;
+}
+
+.rb-news {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.rb-news__snippet {
+  @include type.type-style('body-01');
+
+  color: $text-secondary;
+}
+
+.rb-news__meta {
+  @include type.type-style('label-01');
+
+  color: $text-helper;
+}
+
+.rb-no-news {
+  gap: $spacing-03;
+}
+
+.rb-no-news__heading {
+  @include type.type-style('heading-03');
+
+  color: $text-primary;
+}
+
+.rb-no-news__supporting {
+  @include type.type-style('body-01');
+
+  color: $text-secondary;
+}
+
+// ---------------------------------------------------------------------------
 // Price direction
 //
 // The Valma library publishes no price-direction token pair, so the frames bind
