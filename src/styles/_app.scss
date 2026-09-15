@@ -1,6 +1,7 @@
 @use '@carbon/react/scss/theme' as *;
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as type;
+@use '@carbon/react/scss/motion' as motion;
 
 // ---------------------------------------------------------------------------
 // Shell
@@ -15,6 +16,31 @@ body {
 .rb-main {
   min-block-size: 100vh;
   padding-block-start: $spacing-09;
+}
+
+// ---------------------------------------------------------------------------
+// Screen transition
+//
+// Figma defines no motion for this page, so this is authored from Carbon's own tokens:
+// duration-moderate-01 (150ms) on the standard/productive curve — the system's default for
+// short-distance movement of a small surface.
+// ---------------------------------------------------------------------------
+
+.rb-screen {
+  animation: rb-screen-enter motion.$duration-moderate-01
+    motion.motion(standard, productive) both;
+}
+
+@keyframes rb-screen-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, $spacing-02, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -387,4 +413,19 @@ body {
 
 .rb-price-change--down {
   color: $support-error;
+}
+
+// ---------------------------------------------------------------------------
+// Reduced motion
+// ---------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+  .rb-screen {
+    animation: none;
+  }
+
+  .cds--modal,
+  .cds--modal-container {
+    transition: none;
+  }
 }
