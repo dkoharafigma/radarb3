@@ -1,0 +1,10 @@
+// Carbon ships theme, type, layout and every component stylesheet from this one entry point.
+// Everything the app adds sits in `_app.scss` and is written in Carbon tokens only.
+//
+// `$css--font-face: false` — IBM Plex Sans is loaded from `index.html`. Carbon's own
+// @font-face block points at `~@ibm/plex`, a webpack-style path Vite cannot resolve, and it
+// also covers Mono/Serif/Condensed which this app never uses.
+@use '@carbon/react' with (
+  $css--font-face: false
+);
+@use './app';
