@@ -2,13 +2,14 @@
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/colors' as colors;
 
 // ---------------------------------------------------------------------------
 // Shell
 // ---------------------------------------------------------------------------
 
 body {
-  background-color: $background;
+  background-color: colors.$red-60;
 }
 
 // Carbon's UI Shell Header is `position: fixed` and 48px tall, so the scrolling region has to
@@ -202,6 +203,11 @@ body {
 // `Web / Add / Search / Results` tightens the gap between the field and the result list.
 .rb-modal-body--results {
   gap: $spacing-03;
+
+  // Available (enabled) chips use a deep red outline per design; #900b09 has no Carbon palette match.
+  .cds--tag--operational:not(.cds--tag--disabled):not([disabled]) {
+    border-color: #900b09;
+  }
 }
 
 .rb-search-guidance {
