@@ -2,13 +2,14 @@
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/motion' as motion;
+@use '@carbon/colors' as colors;
 
 // ---------------------------------------------------------------------------
 // Shell
 // ---------------------------------------------------------------------------
 
 body {
-  background-color: $background;
+  background-color: colors.$red-60;
 }
 
 // Carbon's UI Shell Header is `position: fixed` and 48px tall, so the scrolling region has to
