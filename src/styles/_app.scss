@@ -203,6 +203,11 @@ body {
 // `Web / Add / Search / Results` tightens the gap between the field and the result list.
 .rb-modal-body--results {
   gap: $spacing-03;
+
+  // Available (enabled) chips use a deep red outline per design; #900b09 has no Carbon palette match.
+  .cds--tag--operational:not(.cds--tag--disabled):not([disabled]) {
+    border-color: #900b09;
+  }
 }
 
 .rb-search-guidance {
