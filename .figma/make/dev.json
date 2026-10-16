@@ -4,20 +4,26 @@
       "prefer": [
         "src/screens/**/*.{ts,tsx}",
         "src/components/**/*.{ts,tsx}",
-        "src/App.tsx",
-        "src/styles/**/*.scss"
+        "src/App.tsx"
       ],
       "deprioritize": [
         "src/store/**/*.{ts,tsx}",
-        "src/data/**/*.ts",
-        "src/lib/**/*.ts",
+        "src/data/**/*.{ts,tsx}",
+        "src/lib/**/*.{ts,tsx}",
+        "src/styles/**/*.{scss,css}",
         "src/main.tsx",
         "src/vite-env.d.ts"
       ],
       "exclude": [
-        "prd/**",
+        "node_modules/**",
         "dist/**",
-        ".claude/**",
+        ".figma/**",
+        "**/*.figma.ts",
+        "**/*.figma.tsx",
+        "**/*.figma.js",
+        "**/*.figma.jsx",
+        "**/*.figma.template.*",
+        "prd/**",
         ".git/**"
       ]
     },
@@ -33,20 +39,44 @@
     },
     "exclusions": [
       {
-        "glob": "prd/**",
-        "reason": "Product-requirements markdown documents — not source code and cannot be a UI rendering anchor."
+        "glob": "node_modules/**",
+        "reason": "Third-party dependencies are not UI source anchors for point-and-edit; the app's own components in src/ are the correct edit targets."
       },
       {
         "glob": "dist/**",
-        "reason": "Build output — not editable source."
+        "reason": "Build output — generated files, not source."
       },
       {
-        "glob": ".claude/**",
-        "reason": "IDE/tooling configuration files — not UI source."
+        "glob": ".figma/**",
+        "reason": "Figma Make configuration and tooling files, not UI source."
+      },
+      {
+        "glob": "**/*.figma.ts",
+        "reason": "Figma mapping files must be excluded per classification rules."
+      },
+      {
+        "glob": "**/*.figma.tsx",
+        "reason": "Figma mapping files must be excluded per classification rules."
+      },
+      {
+        "glob": "**/*.figma.js",
+        "reason": "Figma mapping files must be excluded per classification rules."
+      },
+      {
+        "glob": "**/*.figma.jsx",
+        "reason": "Figma mapping files must be excluded per classification rules."
+      },
+      {
+        "glob": "**/*.figma.template.*",
+        "reason": "Figma mapping files must be excluded per classification rules."
+      },
+      {
+        "glob": "prd/**",
+        "reason": "Product requirement documents — markdown specification files, not UI source."
       },
       {
         "glob": ".git/**",
-        "reason": "Git internals — not source code of any kind."
+        "reason": "Version control internals — not source files."
       }
     ],
     "generated": {
@@ -56,7 +86,7 @@
       "model": "claude-sonnet-4-6",
       "createdAt": "2026-10-16T00:00:00.000Z",
       "confidence": 0.97,
-      "explanation": "Single-app React + Vite project with all UI source confined to src/screens and src/components, no local design-system library, and @carbon/react as the sole external UI library; structure is unambiguous."
+      "explanation": "Single-package React + Vite app with a small, well-structured src/ tree; all UI composition surfaces are clearly identifiable under src/screens/ and src/components/, and the only shared UI library is the published @carbon/react dependency — no ambiguous local library boundaries exist."
     }
   }
 }
