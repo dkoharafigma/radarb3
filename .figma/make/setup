@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Runs once on first open of the project. System-level prerequisites only.
+# Project dependencies are handled by `install`, which runs every open.
+set -euo pipefail
+
+# Node is provided by the host environment; just confirm it's reachable so a
+# missing toolchain fails here with a clear message rather than deep in a build.
+if ! command -v node >/dev/null 2>&1; then
+  echo "node is not installed or not on PATH" >&2
+  exit 1
+fi
+
+echo "setup: node $(node -v), npm $(npm -v) available"

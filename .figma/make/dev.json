@@ -1,0 +1,62 @@
+{
+  "pointAndEdit": {
+    "priorityPaths": {
+      "prefer": [
+        "src/screens/**/*.{ts,tsx}",
+        "src/components/**/*.{ts,tsx}",
+        "src/App.tsx",
+        "src/styles/**/*.scss"
+      ],
+      "deprioritize": [
+        "src/store/**/*.{ts,tsx}",
+        "src/data/**/*.ts",
+        "src/lib/**/*.ts",
+        "src/main.tsx",
+        "src/vite-env.d.ts"
+      ],
+      "exclude": [
+        "prd/**",
+        "dist/**",
+        ".claude/**",
+        ".git/**"
+      ]
+    },
+    "libraryPaths": {
+      "local": [],
+      "external": [
+        "node_modules/@carbon/react/**",
+        "node_modules/@carbon/icons-react/**"
+      ]
+    },
+    "pathClassification": {
+      "classifier": "sonnet"
+    },
+    "exclusions": [
+      {
+        "glob": "prd/**",
+        "reason": "Product-requirements markdown documents — not source code and cannot be a UI rendering anchor."
+      },
+      {
+        "glob": "dist/**",
+        "reason": "Build output — not editable source."
+      },
+      {
+        "glob": ".claude/**",
+        "reason": "IDE/tooling configuration files — not UI source."
+      },
+      {
+        "glob": ".git/**",
+        "reason": "Git internals — not source code of any kind."
+      }
+    ],
+    "generated": {
+      "schemaVersion": 2,
+      "source": "setup-agent.point-and-edit-path-classifier",
+      "prompt": "same-turn-setup-subagent-v5",
+      "model": "claude-sonnet-4-6",
+      "createdAt": "2026-10-16T00:00:00.000Z",
+      "confidence": 0.97,
+      "explanation": "Single-app React + Vite project with all UI source confined to src/screens and src/components, no local design-system library, and @carbon/react as the sole external UI library; structure is unambiguous."
+    }
+  }
+}

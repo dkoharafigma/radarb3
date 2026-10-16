@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Installs project dependencies. Runs on every project open.
+set -euo pipefail
+
+# Resolve the repo root (two levels up from .figma/make) so this works
+# regardless of the caller's working directory.
+cd "$(dirname "$0")/../.."
+
+# `npm ci` is the reproducible install for a committed package-lock.json.
+# Fall back to `npm install` if the lockfile and manifest ever drift.
+npm ci || npm install

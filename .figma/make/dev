@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Starts the Vite dev server. Runs in the background for the whole session
+# and is killed on project close.
+set -euo pipefail
+
+cd "$(dirname "$0")/../.."
+
+# Load PORT / FIGMA_MAKE_URL from the sibling env file.
+set -a
+. "$(dirname "$0")/env"
+set +a
+
+# Bind Vite to the shared PORT. --strictPort fails loudly instead of silently
+# hopping to another port, which would desync the preview URL.
+exec npm run dev -- --port "$PORT" --strictPort --host
